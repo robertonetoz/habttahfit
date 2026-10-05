@@ -1,0 +1,372 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bordo: #751215;
+  --color-bordo-fundo: #5c0d10;
+  --color-concreto: #edebea;
+  --color-rosa: #f3d3d4;
+  --color-aberta: #3ecf7a;
+
+  --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-trava: cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4.5rem;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+    overflow-x: clip;
+    font-size: 1.0625rem;
+    line-height: 1.55;
+    font-variation-settings: "wdth" 100;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  :focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--color-bordo);
+    color: #fff;
+  }
+}
+
+@layer components {
+  /* A Archivo tem eixo de largura (62 a 125). O site inteiro usa essa única
+     família: condensada e pesada para títulos, largura normal para leitura. */
+  .titulo {
+    font-variation-settings: "wdth" var(--wdth, 62);
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 0.88;
+    letter-spacing: -0.005em;
+  }
+
+  .titulo-2 {
+    font-size: clamp(2.9rem, 7.4vw, 6.5rem);
+  }
+
+  .estreito {
+    font-variation-settings: "wdth" 72;
+  }
+
+  .faixa {
+    margin-inline: auto;
+    max-width: 86rem;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 1024px) {
+    .faixa {
+      padding-inline: 3rem;
+    }
+  }
+
+  .botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    min-height: 3.5rem;
+    padding: 0.85rem 1.5rem;
+    font-weight: 700;
+    line-height: 1.15;
+    transition:
+      background-color 0.2s,
+      color 0.2s,
+      border-color 0.2s;
+  }
+
+  .botao svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex: none;
+  }
+}
+
+@keyframes h-desce {
+  from {
+    transform: translateY(-16%);
+    opacity: 0;
+  }
+}
+
+@keyframes h-sobe {
+  from {
+    transform: translateY(16%);
+    opacity: 0;
+  }
+}
+
+@keyframes surge {
+  from {
+    transform: translateY(105%);
+  }
+}
+
+@keyframes aparece {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes pulsa {
+  0% {
+    box-shadow: 0 0 0 0 rgb(62 207 122 / 0.55);
+  }
+  100% {
+    box-shadow: 0 0 0 0.6rem rgb(62 207 122 / 0);
+  }
+}
+
+@layer components {
+  /* ─── Marca do degrau: as duas barras desencontradas do H ───────────────── */
+
+  .degrau {
+    display: block;
+    position: relative;
+    width: 3.5rem;
+    height: 1.375rem;
+  }
+
+  .degrau::before,
+  .degrau::after {
+    content: "";
+    position: absolute;
+    height: 0.5rem;
+    width: 62%;
+    background: currentColor;
+    transition: transform 0.7s var(--ease-trava);
+  }
+
+  .degrau::before {
+    top: 0;
+    left: 0;
+    transform: translateX(-60%);
+  }
+
+  .degrau::after {
+    bottom: 0;
+    right: 0;
+    transform: translateX(60%);
+  }
+
+  .degrau[data-visto="true"]::before,
+  .degrau[data-visto="true"]::after {
+    transform: none;
+  }
+
+  /* ─── Hero ──────────────────────────────────────────────────────────────── */
+
+  .h-esquerda {
+    animation: h-desce 1.1s var(--ease-trava) both;
+  }
+
+  .h-direita {
+    animation: h-sobe 1.1s var(--ease-trava) both;
+  }
+
+  .linha-mascara {
+    display: block;
+    overflow-x: visible;
+    overflow-y: clip;
+    padding-block: 0.07em;
+    margin-block: -0.07em;
+  }
+
+  .linha-mascara > span {
+    display: block;
+    animation: surge 0.9s var(--ease-trava) both;
+    animation-delay: var(--atraso, 0s);
+  }
+
+  .aparece {
+    animation: aparece 0.8s ease both;
+    animation-delay: var(--atraso, 0s);
+  }
+
+  .ponto-aberta {
+    animation: pulsa 2s ease-out infinite;
+  }
+
+  /* ─── Outubro: bilhete e catraca ────────────────────────────────────────── */
+
+  .bilhete-preco {
+    --wdth: 62;
+    transition: font-variation-settings 0.5s var(--ease-trava);
+  }
+
+  .bilhete:hover .bilhete-preco,
+  .bilhete:focus-within .bilhete-preco {
+    --wdth: 96;
+  }
+
+  .bilhete-canhoto::before,
+  .bilhete-canhoto::after {
+    content: "";
+    position: absolute;
+    top: -1rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: #000;
+  }
+
+  .bilhete-canhoto::before {
+    left: -1rem;
+  }
+
+  .bilhete-canhoto::after {
+    right: -1rem;
+  }
+
+  @media (min-width: 1024px) {
+    .bilhete-canhoto::before,
+    .bilhete-canhoto::after {
+      left: calc(-1rem - 1px);
+      right: auto;
+    }
+
+    .bilhete-canhoto::after {
+      top: auto;
+      bottom: -1rem;
+    }
+  }
+
+  .catraca svg {
+    width: 1.75rem;
+    height: 1.75rem;
+    transition: transform 0.6s var(--ease-trava);
+  }
+
+  .catraca:hover svg,
+  .catraca:focus-visible svg {
+    transform: rotate(120deg);
+  }
+
+  /* ─── Modalidades ───────────────────────────────────────────────────────── */
+
+  .modalidade-nome {
+    --wdth: 62;
+    transition:
+      font-variation-settings 0.55s var(--ease-trava),
+      color 0.3s;
+  }
+
+  /* Quanto o nome ativo alarga: nomes compridos alargam menos para caber. */
+  .modalidade {
+    --larga: 100;
+  }
+
+  .modalidade[data-longa="true"] {
+    --larga: 76;
+  }
+
+  @media (min-width: 1024px) {
+    .modalidade {
+      --larga: 112;
+    }
+
+    .modalidade[data-longa="true"] {
+      --larga: 82;
+    }
+  }
+
+  .modalidade[data-ativa="true"] .modalidade-nome {
+    --wdth: var(--larga);
+  }
+
+  .abre {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.45s var(--ease-trava);
+  }
+
+  .abre[data-aberto="true"] {
+    grid-template-rows: 1fr;
+  }
+
+  .abre > div {
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  /* ─── Galeria ───────────────────────────────────────────────────────────── */
+
+  .reservado {
+    background-color: var(--color-concreto);
+    background-image: repeating-linear-gradient(
+      135deg,
+      transparent 0 22px,
+      rgb(117 18 21 / 0.07) 22px 24px
+    );
+  }
+
+  dialog.visor {
+    max-width: none;
+    max-height: none;
+    width: 100vw;
+    height: 100dvh;
+    margin: 0;
+    padding: 0;
+    background: #000;
+    color: #fff;
+  }
+
+  dialog.visor::backdrop {
+    background: #000;
+  }
+
+  /* ─── Horários ──────────────────────────────────────────────────────────── */
+
+  .barra-turno {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.1s var(--ease-trava);
+    transition-delay: var(--atraso, 0s);
+  }
+
+  [data-visto="true"] .barra-turno {
+    transform: none;
+  }
+
+  /* ─── Mapa ──────────────────────────────────────────────────────────────── */
+
+  .mapa iframe {
+    filter: grayscale(1) contrast(1.08);
+    transition: filter 0.4s;
+  }
+
+  .mapa:hover iframe,
+  .mapa:focus-within iframe {
+    filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .degrau::before,
+  .degrau::after,
+  .barra-turno {
+    transform: none;
+  }
+}
