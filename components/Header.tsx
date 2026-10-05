@@ -76,7 +76,7 @@ export function Header() {
               claro ? "bg-bordo text-white hover:bg-black" : "bg-white text-bordo hover:bg-black hover:text-white"
             }`}
           >
-            <Icon name="conversa" />
+            <Icon name="whatsapp" />
             WhatsApp
           </a>
 
@@ -124,7 +124,7 @@ export function Header() {
             rel="noopener"
             className="botao mt-5 w-full bg-white text-bordo"
           >
-            <Icon name="conversa" />
+            <Icon name="whatsapp" />
             Falar com a equipe no WhatsApp
           </a>
         </div>

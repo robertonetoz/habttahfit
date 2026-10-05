@@ -59,7 +59,7 @@ export function Hero() {
               rel="noopener"
               className="botao bg-white text-bordo hover:bg-black hover:text-white"
             >
-              <Icon name="conversa" />
+              <Icon name="whatsapp" />
               Quero começar por R$ 9,90
             </a>
             <a

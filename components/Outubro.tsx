@@ -114,7 +114,7 @@ export function Outubro() {
                     rel="noopener"
                     className="mt-5 inline-flex items-center gap-2.5 font-bold underline decoration-bordo decoration-4 underline-offset-8 hover:decoration-white"
                   >
-                    <Icon name="conversa" className="size-5" />
+                    <Icon name="whatsapp" className="size-5" />
                     {evento.acao.rotulo}
                   </a>
                 )}

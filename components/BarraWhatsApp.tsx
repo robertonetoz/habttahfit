@@ -28,7 +28,7 @@ export function BarraWhatsApp() {
         rel="noopener"
         className="botao w-full bg-bordo text-white"
       >
-        <Icon name="conversa" />
+        <Icon name="whatsapp" />
         Quero começar por R$ 9,90
       </a>
     </div>

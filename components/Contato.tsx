@@ -4,7 +4,7 @@ import { Icon, type IconName } from "./Icon";
 
 const canais: { icone: IconName; rotulo: string; valor: string; href: string }[] = [
   {
-    icone: "conversa",
+    icone: "whatsapp",
     rotulo: "WhatsApp",
     valor: site.whatsapp.texto,
     href: whatsapp(mensagens.comecar),

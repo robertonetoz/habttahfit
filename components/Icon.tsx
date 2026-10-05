@@ -69,7 +69,6 @@ const desenhos = {
       <path d="M20 37h8" />
     </>
   ),
-  conversa: <path d="M5 7h38v27H23l-11 9v-9H5Z" />,
   camera: (
     <>
       <rect x="6" y="6" width="36" height="36" rx="9" />
@@ -96,9 +95,15 @@ const desenhos = {
   ampliar: <path d="M28 6h14v14M20 42H6V28M42 6 27 21M6 42l15-15" />,
 } satisfies Record<string, ReactNode>;
 
-export type IconName = keyof typeof desenhos;
+export type IconName = keyof typeof desenhos | "whatsapp";
 
-export function Icon({ name, className }: { name: IconName; className?: string }) {
+export function Icon({ name, className = "" }: { name: IconName; className?: string }) {
+  // O ícone do WhatsApp vem de /public/whatsapp.png, usado como máscara para
+  // herdar a cor do texto como os outros ícones.
+  if (name === "whatsapp") {
+    return <span aria-hidden="true" className={`icone-whatsapp ${className}`} />;
+  }
+
   return (
     <svg
       viewBox="0 0 48 48"

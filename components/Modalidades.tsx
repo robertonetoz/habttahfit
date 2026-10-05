@@ -84,7 +84,7 @@ export function Modalidades() {
                           rel="noopener"
                           className="botao mt-7 bg-bordo text-white hover:bg-black"
                         >
-                          <Icon name="conversa" />
+                          <Icon name="whatsapp" />
                           Pedir a grade de aulas
                         </a>
                       )}

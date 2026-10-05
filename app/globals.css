@@ -91,6 +91,19 @@
     height: 1.25rem;
     flex: none;
   }
+
+  .icone-whatsapp {
+    display: inline-block;
+    background: currentColor;
+    -webkit-mask: url("/whatsapp.png") center / contain no-repeat;
+    mask: url("/whatsapp.png") center / contain no-repeat;
+  }
+
+  .botao .icone-whatsapp {
+    width: 1.45rem;
+    height: 1.45rem;
+    flex: none;
+  }
 }
 
 @keyframes h-desce {

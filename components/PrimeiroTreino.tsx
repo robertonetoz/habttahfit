@@ -24,7 +24,7 @@ export function PrimeiroTreino() {
             rel="noopener"
             className="botao mt-8 bg-bordo text-white hover:bg-black"
           >
-            <Icon name="conversa" />
+            <Icon name="whatsapp" />
             Tirar outra dúvida no WhatsApp
           </a>
         </div>
