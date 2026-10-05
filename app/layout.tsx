@@ -10,8 +10,16 @@ const archivo = Archivo({
   display: "swap",
 });
 
+// Endereço público do site, usado para montar o link da imagem de prévia.
+// Na Vercel vem do domínio de produção do projeto; fora dela, de site.url.
+const enderecoPublico =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : site.url);
+
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
+  metadataBase: new URL(enderecoPublico),
   title: "Habttah Fit | Academia no Centro de Araguari, MG",
   description: site.descricao,
   openGraph: {
@@ -21,6 +29,7 @@ export const metadata: Metadata = {
     type: "website",
     siteName: site.nome,
   },
+  twitter: { card: "summary_large_image" },
 };
 
 export const viewport: Viewport = {
